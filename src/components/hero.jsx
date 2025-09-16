@@ -44,7 +44,7 @@ const HeroButtons = styled.div`
 const Hero = () => (
   <HeroSection>
     <HeroImage
-      src="/foto.jpeg"
+      src={`${import.meta.env.BASE_URL}foto.jpeg`}
       alt="Foto profissional de Rômulo Dias"
     />
     <HeroTitle>Rômulo Dias</HeroTitle>

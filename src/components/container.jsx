@@ -41,7 +41,7 @@ const NavContent = styled.div`
 const NavBrand = styled.a`
   font-weight: 700;
   font-size: 1.25rem;
-  cursor: default;
+  cursor: pointer;
   text-decoration: none;
   color: ${({ theme }) => theme.text};
 `;

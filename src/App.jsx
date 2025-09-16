@@ -59,7 +59,7 @@ const App = () => {
       <GlobalStyle />
       <Nav>
       <NavContent>
-        <NavBrand href='/'>Rômulo Dias</NavBrand>
+        <NavBrand href='/portfolio'>Rômulo Dias</NavBrand>
         <NavLinks>
           <NavLink href="#skills">Habilidades</NavLink>
           <NavLink href="#projects">Projetos</NavLink>

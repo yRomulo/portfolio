@@ -3,6 +3,11 @@ import { Github, Twitter, Linkedin, ExternalLink, Code2, Server, Cloud, Globe, M
 //import { Linkedin  } from 'react-icons/fa/FaLinkedin ';
 import { MdLightMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
+import { PiDatabase } from "react-icons/pi";
+
+const Icon = styled(PiDatabase)`
+
+`;
 
 // Container geral
 const Container = styled.div`

@@ -44,7 +44,7 @@ const HeroButtons = styled.div`
 const Hero = () => (
   <HeroSection>
     <HeroImage
-      src={`${import.meta.env.BASE_URL}foto.jpeg`}
+      src="/portfolio/foto.jpeg"
       alt="Foto profissional de Rômulo Dias"
     />
     <HeroTitle>Rômulo Dias</HeroTitle>
@@ -54,7 +54,7 @@ const Hero = () => (
     </HeroDescription>
     <HeroButtons>
       <Button onClick={() => window.location.href = '#projects'}>Ver Projetos</Button>
-      <a href="/curriculo.pdf" download>
+      <a href="/portfolio/curriculo.pdf" download>
         <Button variant='outline'>Baixar Currículo</Button>
       </a>
     </HeroButtons>

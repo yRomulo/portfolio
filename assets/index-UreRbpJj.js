@@ -138,7 +138,7 @@ Error generating stack: `+e.message+`
 `,Jv=Q.a`
   font-weight: 700;
   font-size: 1.25rem;
-  cursor: default;
+  cursor: pointer;
   text-decoration: none;
   color: ${({theme:i})=>i.text};
 `,kv=Q.div`
@@ -470,4 +470,4 @@ Error generating stack: `+e.message+`
   a {
     color: ${({theme:i})=>i.primary};
   }
-`,xg=({theme:i,toggleTheme:f})=>T.jsx("button",{onClick:f,style:{width:50,height:50,position:"fixed",bottom:20,right:20,padding:"0.5rem 0.5rem",borderRadius:"50%",border:"none",cursor:"pointer",backgroundColor:i==="dark"?"#f9fafb":"#111827",color:i==="dark"?"#111827":"#f9fafb",zIndex:100,fontSize:"1.5rem",userSelect:"none"},"aria-label":"Alternar tema claro/escuro",title:"Alternar tema claro/escuro",children:i==="dark"?T.jsx(Wv,{}):T.jsx(Fv,{})}),_g=()=>{const[i,f]=gl.useState("dark"),o=()=>{f(r=>r==="dark"?"light":"dark")};return T.jsxs(sv,{theme:i==="dark"?Ag:Tg,children:[T.jsx(zg,{}),T.jsx(Vv,{children:T.jsxs(Kv,{children:[T.jsx(Jv,{href:"/",children:"Rômulo Dias"}),T.jsxs(kv,{children:[T.jsx(dr,{href:"#skills",children:"Habilidades"}),T.jsx(dr,{href:"#projects",children:"Projetos"}),T.jsx(dr,{href:"#contact",children:"Contato"})]})]})}),T.jsx(xg,{theme:i,toggleTheme:o}),T.jsx(ug,{}),T.jsx(fg,{}),T.jsx(dg,{}),T.jsx(bg,{}),T.jsx(Eg,{})]})};oy.createRoot(document.getElementById("root")).render(T.jsx(gl.StrictMode,{children:T.jsx(_g,{})}));
+`,xg=({theme:i,toggleTheme:f})=>T.jsx("button",{onClick:f,style:{width:50,height:50,position:"fixed",bottom:20,right:20,padding:"0.5rem 0.5rem",borderRadius:"50%",border:"none",cursor:"pointer",backgroundColor:i==="dark"?"#f9fafb":"#111827",color:i==="dark"?"#111827":"#f9fafb",zIndex:100,fontSize:"1.5rem",userSelect:"none"},"aria-label":"Alternar tema claro/escuro",title:"Alternar tema claro/escuro",children:i==="dark"?T.jsx(Wv,{}):T.jsx(Fv,{})}),_g=()=>{const[i,f]=gl.useState("dark"),o=()=>{f(r=>r==="dark"?"light":"dark")};return T.jsxs(sv,{theme:i==="dark"?Ag:Tg,children:[T.jsx(zg,{}),T.jsx(Vv,{children:T.jsxs(Kv,{children:[T.jsx(Jv,{href:"/portfolio",children:"Rômulo Dias"}),T.jsxs(kv,{children:[T.jsx(dr,{href:"#skills",children:"Habilidades"}),T.jsx(dr,{href:"#projects",children:"Projetos"}),T.jsx(dr,{href:"#contact",children:"Contato"})]})]})}),T.jsx(xg,{theme:i,toggleTheme:o}),T.jsx(ug,{}),T.jsx(fg,{}),T.jsx(dg,{}),T.jsx(bg,{}),T.jsx(Eg,{})]})};oy.createRoot(document.getElementById("root")).render(T.jsx(gl.StrictMode,{children:T.jsx(_g,{})}));

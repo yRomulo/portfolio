@@ -18,8 +18,9 @@ const SectionTitle = styled.h2`
 const Grid = styled.div`
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(3, 1fr);
-
+  grid-template-columns: repeat(1, 1fr);
+  width: min-content;
+    margin: auto;
   @media(max-width: 768px) {
     grid-template-columns: 1fr !important;
   }
@@ -75,7 +76,7 @@ const Projects = () => (
     <SectionTitle>Projetos em Destaque</SectionTitle>
     <Grid>
       {/* Projeto 1 */}
-      <CardContainer>
+      {/* <CardContainer>
         <CardImage
           src="https://source.unsplash.com/400x250/?dashboard,ecommerce"
           alt="Projeto Plataforma E-commerce"
@@ -97,20 +98,20 @@ const Projects = () => (
             </SmallButton>
           </div>
         </CardContent>
-      </CardContainer>
+      </CardContainer> */}
 
       {/* Projeto 2 */}
       <CardContainer>
-        <CardImage
+        {/* <CardImage
           src="https://source.unsplash.com/400x250/?app,finance"
           alt="Projeto App Financeiro"
-        />
+        /> */}
         <CardHeader>
-          <CardTitle>App Financeiro</CardTitle>
-          <CardDescription>React Native, Firebase</CardDescription>
+          <CardTitle>Em produção...</CardTitle>
+          <CardDescription></CardDescription>
         </CardHeader>
         <CardContent>
-          <p>Aplicativo móvel para controle financeiro pessoal com sincronização em tempo real e gráficos interativos.</p>
+          <p>Aqui ficará alocado projetos para demonstração da utilização de tecnologias.</p>
           <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
             <SmallButton onClick={() => window.open('https://github.com/usuario/app-financeiro', '_blank')}>
               <Github size={16} />
@@ -125,7 +126,7 @@ const Projects = () => (
       </CardContainer>
 
       {/* Projeto 3 */}
-      <CardContainer>
+      {/* <CardContainer>
         <CardImage
           src="https://source.unsplash.com/400x250/?blog,website"
           alt="Projeto Blog Pessoal"
@@ -147,7 +148,7 @@ const Projects = () => (
             </SmallButton>
           </div>
         </CardContent>
-      </CardContainer>
+      </CardContainer> */}
     </Grid>
   </Section>
 );

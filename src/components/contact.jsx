@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Mail, Phone, MapPin } from './container'; 
+import emailjs from 'emailjs-com';
+import { Mail, Phone, MapPin } from './container';
 import { useState } from 'react';
 
 const Section = styled.section`
@@ -28,7 +29,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: auto;
   height: 2.5rem;
   padding: 0 0.75rem;
   border-radius: 0.375rem;
@@ -49,7 +50,7 @@ const Input = styled.input`
 `;
 
 const Textarea = styled.textarea`
-  width: 100%;
+  width: auto;
   min-height: 6rem;
   padding: 0.5rem 0.75rem;
   border-radius: 0.375rem;
@@ -80,6 +81,7 @@ const Button = styled.button`
   cursor: pointer;
   border: none;
   transition: background-color 0.2s ease;
+  margin-top: 1rem;
 
   &:hover {
     background-color: #2563eb;
@@ -105,6 +107,7 @@ const InfoItem = styled.div`
   gap: 0.5rem;
 `;
 
+
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [sending, setSending] = useState(false);
@@ -117,11 +120,21 @@ const Contact = () => {
   const handleSubmit = e => {
     e.preventDefault();
     setSending(true);
-    setTimeout(() => {
-      alert('Mensagem enviada! Entrarei em contato em breve.');
-      setFormData({ name: '', email: '', message: '' });
-      setSending(false);
-    }, 1500);
+    emailjs.send(
+      'service_49ga4kl',          // seu Service ID
+      'template_v75iclb',         // seu Template ID (substitua)
+      formData,
+      'ul6RmSaBn5623Wvqk'              // sua Public Key (User  ID) (substitua)
+    )
+      .then(() => {
+        alert('Email enviado com sucesso!');
+        setFormData({ name: '', email: '', message: '' });
+        setSending(false);
+      })
+      .catch((error) => {
+        alert('Erro ao enviar email: ' + error.text);
+        setSending(false);
+      });
   };
 
   return (
@@ -172,7 +185,7 @@ const Contact = () => {
         <InfoItem><Mail size={20} /> romulo.marroso@gmail.com</InfoItem>
         <InfoItem><Phone size={20} /> +55 22 99774-5172</InfoItem>
         <InfoItem><MapPin size={20} /> Rio das ostras - RJ - Brasil</InfoItem>
-      </ContactInfo> 
+      </ContactInfo>
     </Section>
   );
 };

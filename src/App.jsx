@@ -1,10 +1,9 @@
 import { Container, Nav, NavContent, NavBrand, NavLinks, NavLink, StyledSun, StyledMoon } from './components/container'; // Parte 1
-import Hero from './components/hero'; // Parte 2
-import About from './components/about'; // Parte 3
-import Skills from './components/skills'; // Parte 4
-import Projects from './components/projects'; // Parte 5
-import Contact from './components/contact'; // Parte 7
-import Footer from './components/footer'; // Parte 8
+import Hero from './components/hero';
+import Skills from './components/skills';
+import Projects from './components/projects'; 
+import Contact from './components/contact'; 
+import Footer from './components/footer'; 
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { darkTheme, lightTheme } from './styles/themes';
 import {useState} from 'react';

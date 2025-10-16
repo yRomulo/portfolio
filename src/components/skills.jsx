@@ -83,7 +83,7 @@ const Skills = () => (
         </CardHeader>
         <CardContent>
           <ul>
-            <li>React.js / Next.js</li>
+            <li>React.js / Next.js / Vite.js</li>
             <li>TypeScript</li>
             <li>Styled Components</li>
             <li>Tailwind CSS</li>
@@ -101,8 +101,8 @@ const Skills = () => (
         <CardContent>
           <ul>
             <li>Node.js</li>
-            <li>Python Django</li>
-            <li>PostgreSQL</li>
+            <li>Knex</li>
+            <li>SQLite</li>
             <li>MongoDB</li>
           </ul>
         </CardContent>
@@ -119,8 +119,6 @@ const Skills = () => (
           <ul>
             <li>AWS / Azure</li>
             <li>Docker</li>
-            <li>CI/CD Pipelines</li>
-            <li>Kubernetes</li>
           </ul>
         </CardContent>
       </CardContainer>

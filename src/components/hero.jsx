@@ -54,7 +54,7 @@ const Hero = () => (
     </HeroDescription>
     <HeroButtons>
       <Button onClick={() => window.location.href = '#projects'}>Ver Projetos</Button>
-      <a href="/portfolio/romulo_curriculo.pdf" download>
+      <a href="/portfolio/curriculo_romulo.pdf" download>
         <Button variant='outline'>Baixar Currículo</Button>
       </a>
     </HeroButtons>

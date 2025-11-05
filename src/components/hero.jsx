@@ -48,9 +48,9 @@ const Hero = () => (
       alt="Foto profissional de Rômulo Dias"
     />
     <HeroTitle>Rômulo Dias</HeroTitle>
-    <HeroSubtitle>Desenvolvedor Full Stack</HeroSubtitle>
+    <HeroSubtitle>Estudante de tecnologia</HeroSubtitle>
     <HeroDescription>
-      Estudante dedicado, focado em aprender e crescer na área de desenvolvimento de software.
+      Estudante dedicado, focado em aprender e crescer na área da tecnologia.
     </HeroDescription>
     <HeroButtons>
       <Button onClick={() => window.location.href = '#projects'}>Ver Projetos</Button>

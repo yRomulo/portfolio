@@ -232,7 +232,7 @@ Error generating stack: `+e.message+`
   display: flex;
   justify-content: center;
   gap: 1rem;
-`,eg=()=>D.jsxs(Wv,{children:[D.jsx(Fv,{src:"/portfolio/foto.jpeg",alt:"Foto profissional de Rômulo Dias"}),D.jsx(Iv,{children:"Rômulo Dias"}),D.jsx(Pv,{children:"Desenvolvedor Full Stack"}),D.jsx(tg,{children:"Estudante dedicado, focado em aprender e crescer na área de desenvolvimento de software."}),D.jsxs(lg,{children:[D.jsx($0,{onClick:()=>window.location.href="#projects",children:"Ver Projetos"}),D.jsx("a",{href:"/portfolio/curriculo_romulo.pdf",download:!0,children:D.jsx($0,{variant:"outline",children:"Baixar Currículo"})})]})]}),ag=$.section`
+`,eg=()=>D.jsxs(Wv,{children:[D.jsx(Fv,{src:"/portfolio/foto.jpeg",alt:"Foto profissional de Rômulo Dias"}),D.jsx(Iv,{children:"Rômulo Dias"}),D.jsx(Pv,{children:"Estudante de tecnologia"}),D.jsx(tg,{children:"Estudante dedicado, focado em aprender e crescer na área da tecnologia."}),D.jsxs(lg,{children:[D.jsx($0,{onClick:()=>window.location.href="#projects",children:"Ver Projetos"}),D.jsx("a",{href:"/portfolio/curriculo_romulo.pdf",download:!0,children:D.jsx($0,{variant:"outline",children:"Baixar Currículo"})})]})]}),ag=$.section`
   padding: 5rem 1rem;
   max-width: 1000px;
   margin: 0 auto;

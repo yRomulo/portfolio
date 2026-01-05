@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import { Github, ExternalLink, SmallButton as SmallBtnBase } from './container'; 
+import { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Section = styled.section`
   padding: 5rem 1rem;
   max-width: 1000px;
   margin: 0 auto;
-  
 `;
 
 const SectionTitle = styled.h2`
@@ -13,144 +14,271 @@ const SectionTitle = styled.h2`
   font-weight: 700;
   text-align: center;
   margin-bottom: 3rem;
+  background: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 `;
 
 const Grid = styled.div`
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(1, 1fr);
-  width: min-content;
-    margin: auto;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 2fr));
+  width: 100%;
+  
   @media(max-width: 768px) {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
 `;
 
 const CardContainer = styled.div`
-  border-radius: 0.5rem;
+  display: flex;
+  gap: 1.5rem;
+  border-radius: 1rem;
   border: 1px solid #e5e7eb;
-  background-color: #ffffff;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   color: #111827;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
-  transition: box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  padding: 0.3rem;
+  &:hover {
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+    transform: translateY(-4px);
+    border-color: #667eea;
+  }
+
+  @media(max-width: 768px) {
+    flex-direction: column;
+    gap: 0;
+  }
+`;
+
+const CarouselContainer = styled.div`
+  position: relative;
+  width: 500px;
+  height: 400px;
+  flex-shrink: 0;
+  background: #f0f0f0;
+  border-radius: 1rem;
+  overflow: hidden;
+  @media(max-width: 768px) {
+    width: 100%;
+    height: 250px;
+    border-radius: 1rem 1rem 0 0;
+  }
+`;
+
+const CarouselImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fadeIn 0.3s ease-in-out;
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
+const CarouselButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(102, 126, 234, 0);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+
+  ${props => props.left ? 'left: 0.5rem;' : 'right: 0.5rem;'}
 
   &:hover {
-    box-shadow: 0 8px 24px rgb(0 0 0 / 0.1);
+    background: rgba(102, 126, 234, 0.49);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+`;
+
+const CarouselIndicators = styled.div`
+  position: absolute;
+  bottom: 0.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.3rem;
+  z-index: 10;
+`;
+
+const Indicator = styled.button`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid #667eea;
+  background: ${props => props.active ? 'rgba(102, 126, 234, 0.35)' : 'rgba(255, 255, 255, 0.25)'};
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(102, 126, 234, 0.55);
+  }
+`;
+
+const CardContent = styled.div`
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media(max-width: 768px) {
+    padding: 1.5rem;
   }
 `;
 
 const CardHeader = styled.div`
-  padding: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin: 0 0 0.25rem 0;
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: #111827;
 `;
 
 const CardDescription = styled.p`
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   color: #6b7280;
-  margin: 0;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.5;
 `;
 
-const CardImage = styled.img`
-  width: 100%;
-  height: 12rem;
-  object-fit: cover;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-`;
-
-const CardContent = styled.div`
-  padding: 0 1.5rem 1.5rem;
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 `;
 
 const SmallButton = styled(SmallBtnBase)`
-  margin-right: 0.5rem;
+  margin-right: 0;
 `;
 
-const Projects = () => (
-  <Section id="projects">
-    <SectionTitle>Projetos em Destaque</SectionTitle>
-    <Grid>
-      {/* Projeto 1 */}
-      {/* <CardContainer>
-        <CardImage
-          src="https://source.unsplash.com/400x250/?dashboard,ecommerce"
-          alt="Projeto Plataforma E-commerce"
-        />
-        <CardHeader>
-          <CardTitle>Plataforma E-commerce</CardTitle>
-          <CardDescription>React, Node.js, PostgreSQL</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>Plataforma completa de e-commerce com painel administrativo, sistema de pagamentos e análise de dados.</p>
-          <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
-            <SmallButton onClick={() => window.open('https://github.com/usuario/projeto-ecommerce', '_blank')}>
-              <Github size={16} />
-              Código
-            </SmallButton>
-            <SmallButton onClick={() => window.open('https://demo.projeto-ecommerce.com', '_blank')}>
-              <ExternalLink size={16} />
-              Demo
-            </SmallButton>
-          </div>
-        </CardContent>
-      </CardContainer> */}
+const ProjectCard = ({ title, description, images, codeLink, liveLink }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-      {/* Projeto 2 */}
-      <CardContainer>
-        {/* <CardImage
-          src="https://source.unsplash.com/400x250/?app,finance"
-          alt="Projeto App Financeiro"
-        /> */}
-        <CardHeader>
-          <CardTitle>Em produção...</CardTitle>
-          <CardDescription></CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>Aqui ficará alocado projetos para demonstração da utilização de tecnologias.</p>
-          <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
-            <SmallButton onClick={() => window.open('https://github.com/usuario/app-financeiro', '_blank')}>
-              <Github size={16} />
-              Código
-            </SmallButton>
-            <SmallButton onClick={() => window.open('https://play.google.com/store/apps/details?id=app.financeiro', '_blank')}>
-              <ExternalLink size={16} />
-              Demo
-            </SmallButton>
-          </div>
-        </CardContent>
-      </CardContainer>
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
 
-      {/* Projeto 3 */}
-      {/* <CardContainer>
-        <CardImage
-          src="https://source.unsplash.com/400x250/?blog,website"
-          alt="Projeto Blog Pessoal"
+  const handleNextImage = () => {
+    setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <CardContainer>
+      <CarouselContainer>
+        <CarouselImage
+          key={currentImageIndex}
+          src={images[currentImageIndex]}
+          alt={title}
         />
+        {images.length > 1 && (
+          <>
+            <CarouselButton left onClick={handlePrevImage}>
+              <ChevronLeft size={20} />
+            </CarouselButton>
+            <CarouselButton onClick={handleNextImage}>
+              <ChevronRight size={20} />
+            </CarouselButton>
+            <CarouselIndicators>
+              {images.map((_, index) => (
+                <Indicator
+                  key={index}
+                  active={index === currentImageIndex}
+                  onClick={() => setCurrentImageIndex(index)}
+                />
+              ))}
+            </CarouselIndicators>
+          </>
+        )}
+      </CarouselContainer>
+
+      <CardContent>
         <CardHeader>
-          <CardTitle>Blog Pessoal</CardTitle>
-          <CardDescription>Gatsby, GraphQL</CardDescription>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
         </CardHeader>
-        <CardContent>
-          <p>Blog estático com conteúdo dinâmico, otimizado para SEO e carregamento rápido.</p>
-          <div style={{ marginTop: '1rem', display: 'flex', gap: '0.5rem' }}>
-            <SmallButton onClick={() => window.open('https://github.com/usuario/blog-pessoal', '_blank')}>
+
+        <ButtonGroup>
+          {codeLink && (
+            <SmallButton onClick={() => window.open(codeLink, '_blank')}>
               <Github size={16} />
               Código
             </SmallButton>
-            <SmallButton onClick={() => window.open('https://blog.joaosilva.com', '_blank')}>
+          )}
+          {liveLink && (
+            <SmallButton onClick={() => window.open(liveLink, '_blank')}>
               <ExternalLink size={16} />
-              Demo
+              Link
             </SmallButton>
-          </div>
-        </CardContent>
-      </CardContainer> */}
-    </Grid>
-  </Section>
-);
+          )}
+        </ButtonGroup>
+      </CardContent>
+    </CardContainer>
+  );
+};
+
+const Projects = () => {
+  const projects = [
+    {
+      title: 'Click Financas',
+      description: 'App para gerenciamento financeiro pessoal com análise de gastos e relatórios',
+      images: [
+        '/portfolio/click_financa_dash.png',
+        '/portfolio/click_financa_categ.png',
+        '/portfolio/click_financa_trans.png',
+        '/portfolio/click_financa_relat.png'
+      ],
+      codeLink: 'https://github.com/yRomulo/click_financa.git',
+      liveLink: null
+    },
+    {
+      title: 'Click Agenda',
+      description: 'Sistema de agendamento de horários com interface intuitiva e gerenciamento eficiente',
+      images: [
+        '/portfolio/click_agenda_dash.png',
+        '/portfolio/click_agenda_login.png'
+      ],
+      codeLink: 'https://github.com/yRomulo/click_agenda',
+      liveLink: 'https://clickagenda.vercel.app/login'
+    }
+  ];
+
+  return (
+    <Section id="projects">
+      <SectionTitle>Projetos em Destaque</SectionTitle>
+      <Grid>
+        {projects.map((project, index) => (
+          <ProjectCard key={index} {...project} />
+        ))}
+      </Grid>
+    </Section>
+  );
+};
 
 export default Projects;

@@ -68,8 +68,8 @@ const App = () => {
     </Nav>
       <ThemeToggleButton theme={theme} toggleTheme={toggleTheme} />
       <Hero />
-      <Skills />
       <Projects />
+      <Skills />
       <Contact />
       <Footer />
     </ThemeProvider>

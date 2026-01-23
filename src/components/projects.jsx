@@ -14,10 +14,6 @@ const SectionTitle = styled.h2`
   font-weight: 700;
   text-align: center;
   margin-bottom: 3rem;
-  background: white;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 `;
 
 const Grid = styled.div`
@@ -38,7 +34,7 @@ const CardContainer = styled.div`
   border: 1px solid #e5e7eb;
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   color: #111827;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.08);
   overflow: hidden;
   transition: all 0.3s ease;
   padding: 0.3rem;
@@ -89,7 +85,7 @@ const CarouselButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(102, 126, 234, 0);
+  background: rgba(102, 126, 234, 0.35);
   color: white;
   border: none;
   width: 40px;
@@ -127,14 +123,19 @@ const CarouselIndicators = styled.div`
 const Indicator = styled.button`
   width: 8px;
   height: 8px;
+  display: inline-block;
   border-radius: 50%;
-  border: 1px solid #667eea;
-  background: ${props => props.active ? 'rgba(102, 126, 234, 0.35)' : 'rgba(255, 255, 255, 0.25)'};
+  background: ${props => props.active ? '#667eea' : '#9ca3af'};
+  border: none;
+  outline: ${props => props.active ? '1px solid #667eea' : 'none'};
+  box-sizing: border-box;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.18s ease, background 0.18s ease, outline 0.18s ease;
 
   &:hover {
-    background: rgba(102, 126, 234, 0.55);
+    background: #4f46e5;
+    outline: 2px solid #667eea;
+    transform: scale(1.15);
   }
 `;
 
@@ -249,10 +250,10 @@ const Projects = () => {
       title: 'Click Financas',
       description: 'App para gerenciamento financeiro pessoal com análise de gastos e relatórios',
       images: [
-        '/portfolio/click_financa_dash.png',
-        '/portfolio/click_financa_categ.png',
-        '/portfolio/click_financa_trans.png',
-        '/portfolio/click_financa_relat.png'
+        '/portfolio/click_financa/click_financa_dash.png',
+        '/portfolio/click_financa/click_financa_categ.png',
+        '/portfolio/click_financa/click_financa_trans.png',
+        '/portfolio/click_financa/click_financa_relat.png'
       ],
       codeLink: 'https://github.com/yRomulo/click_financa.git',
       liveLink: null
@@ -261,8 +262,8 @@ const Projects = () => {
       title: 'Click Agenda',
       description: 'Sistema de agendamento de horários com interface intuitiva e gerenciamento eficiente',
       images: [
-        '/portfolio/click_agenda_dash.png',
-        '/portfolio/click_agenda_login.png'
+        '/portfolio/click_agenda/click_agenda_dash.png',
+        '/portfolio/click_agenda/click_agenda_login.png'
       ],
       codeLink: 'https://github.com/yRomulo/click_agenda',
       liveLink: 'https://clickagenda.vercel.app/login'

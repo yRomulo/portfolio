@@ -68,7 +68,6 @@ const CarouselContainer = styled.div`
 const CarouselImage = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
   animation: fadeIn 0.3s ease-in-out;
   
   @keyframes fadeIn {
@@ -248,7 +247,7 @@ const Projects = () => {
   const projects = [
     {
       title: 'Click Financas',
-      description: 'App para gerenciamento financeiro pessoal com análise de gastos e relatórios',
+      description: 'O Click Finança é uma aplicação web full stack para controle financeiro pessoal, desenvolvida com React no frontend, utilizando Zustand, React Router, Axios e Recharts para gerenciamento de estado, navegação, consumo de API e visualização de dados. O backend foi construído com Node.js e Express, com autenticação via JWT, criptografia de senhas com bcryptjs e persistência de dados em PostgreSQL. O projeto utiliza Docker e Docker Compose para padronização do ambiente e disponibiliza uma API REST para gerenciamento de transações, categorias e relatórios financeiros.',
       images: [
         '/portfolio/click_financa/click_financa_dash.png',
         '/portfolio/click_financa/click_financa_categ.png',
@@ -259,15 +258,24 @@ const Projects = () => {
       liveLink: null
     },
     {
+      title: 'API projects',
+      description: 'API RESTful desenvolvida com Node.js, Express e TypeScript, estruturada em arquitetura em camadas (Controller → Service → DTO → Prisma). Implementa autenticação baseada em JWT, documentação OpenAPI via Swagger, persistência com Prisma ORM e PostgreSQL, além de containerização com Docker e Docker Compose para padronização de ambiente e deploy facilitado.',
+      images: [
+        '/portfolio/api_projects/swagger_dashboard.png',
+        '/portfolio/api_projects/swagger_schemas.png',
+      ],
+      codeLink: 'https://github.com/yRomulo/APIprojects'
+    },
+    {
       title: 'Click Agenda',
-      description: 'Sistema de agendamento de horários com interface intuitiva e gerenciamento eficiente',
+      description: 'O ClickAgenda é uma aplicação web full stack para gerenciamento de agendamentos, desenvolvida com Next.js, React e TypeScript no frontend e Node.js com Express no backend. A solução implementa autenticação via JWT, criptografia de senhas com bcrypt, validação com express-validator e persistência de dados em SQLite com migrações automatizadas. O deploy foi realizado utilizando Vercel (frontend) e Render (backend)',
       images: [
         '/portfolio/click_agenda/click_agenda_dash.png',
         '/portfolio/click_agenda/click_agenda_login.png'
       ],
       codeLink: 'https://github.com/yRomulo/click_agenda',
       liveLink: 'https://clickagenda.vercel.app/login'
-    }
+    },
   ];
 
   return (

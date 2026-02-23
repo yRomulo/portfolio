@@ -139,75 +139,6 @@ const techsByCategory = {
 const Skills = () => (
   <Section id="skills">
     <SectionTitle>Habilidades Técnicas</SectionTitle>
-    {/* <Grid>
-      <CardContainer>
-        <CardHeader>
-          <CardTitle>
-            <IconWrapper><Code2 size={20} /></IconWrapper> Frontend
-          </CardTitle>
-          <CardDescription>Principais tecnologias de frontend</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul>
-            <li>React.js / Next.js / Vite.js</li>
-            <li>TypeScript</li>
-            <li>Styled Components</li>
-            <li>Tailwind CSS</li>
-          </ul>
-        </CardContent>
-      </CardContainer>
-
-      <CardContainer>
-        <CardHeader>
-          <CardTitle>
-            <IconWrapper><Server size={20} /></IconWrapper> Backend
-          </CardTitle>
-          <CardDescription>Servidores, APIs e bancos de dados</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul>
-            <li>Node.js</li>
-            <li>Knex</li>
-            <li>SQLite</li>
-            <li>MongoDB</li>
-          </ul>
-        </CardContent>
-      </CardContainer>
-
-      <CardContainer>
-        <CardHeader>
-          <CardTitle>
-            <IconWrapper><Cloud size={20} /></IconWrapper> DevOps
-          </CardTitle>
-          <CardDescription>Infraestrutura e automação</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul>
-            <li>AWS / Azure</li>
-            <li>Docker</li>
-          </ul>
-        </CardContent>
-      </CardContainer>
-
-      <CardContainer>
-        <CardHeader>
-          <CardTitle>
-            <IconWrapper><Globe size={20} /></IconWrapper> Outras
-          </CardTitle>
-          <CardDescription>Ferramentas e metodologias</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul>
-            <li>Git & GitHub</li>
-            <li>Figma Design</li>
-            <li>Scrum/Agile</li>
-            <li>Testes Automatizados</li>
-          </ul>
-          
-        </CardContent>
-      </CardContainer>
-    </Grid> */}
-
     <TechSection>
       <CardHeader>
         <CardTitle>
@@ -223,12 +154,12 @@ const Skills = () => (
 
           { name: 'React', src: 'https://cdn.simpleicons.org/react' },
           { name: 'Next.js', src: 'https://cdn.simpleicons.org/next.js' },
-          { name: 'Vue.js', src: 'https://cdn.simpleicons.org/vue.js' },
-          { name: 'Angular', src: 'https://cdn.simpleicons.org/angular' },
+          { name: 'Vite.js', src: 'https://cdn.simpleicons.org/vite' },
+          //{ name: 'Angular', src: 'https://cdn.simpleicons.org/angular' },
 
-          { name: 'Tailwind', src: 'https://cdn.simpleicons.org/tailwindcss' },
+          //{ name: 'Tailwind', src: 'https://cdn.simpleicons.org/tailwindcss' },
           { name: 'Styled Components', src: 'https://cdn.simpleicons.org/styledcomponents' },
-          { name: 'Redux', src: 'https://cdn.simpleicons.org/redux' },
+          //{ name: 'Redux', src: 'https://cdn.simpleicons.org/redux' },
         ].map((tech) => (
           <TechItem key={tech.name}> 
             <TechLogo src={tech.src} alt={tech.name} onError={(e) => { e.currentTarget.style.display = 'none'; }}/>
@@ -245,16 +176,16 @@ const Skills = () => (
       <TechGrid>
         {[
           { name: 'C', src: 'https://cdn.simpleicons.org/c' },
-          { name: 'Java', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+          //{ name: 'Java', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
           
           { name: 'Node.js', src: 'https://cdn.simpleicons.org/nodedotjs' },
           { name: 'Express', src: 'https://cdn.simpleicons.org/express' },
           { name: 'Firebase', src: 'https://cdn.simpleicons.org/firebase' },
           { name: 'Supabase', src: 'https://cdn.simpleicons.org/supabase' },
           
-          { name: 'Django', src: 'https://cdn.simpleicons.org/django' },
-          { name: 'Flask', src: 'https://cdn.simpleicons.org/flask' },
-          { name: 'Spring Boot', src: 'https://cdn.simpleicons.org/springboot' },
+          //{ name: 'Django', src: 'https://cdn.simpleicons.org/django' },
+          //{ name: 'Flask', src: 'https://cdn.simpleicons.org/flask' },
+          //{ name: 'Spring Boot', src: 'https://cdn.simpleicons.org/springboot' },
           
           { name: 'REST', src: 'https://img.icons8.com/ios-filled/64/000000/api.png' },
           { name: 'JWT', src: 'https://cdn.simpleicons.org/jsonwebtokens' },
@@ -273,10 +204,10 @@ const Skills = () => (
       </CardHeader>
       <TechGrid>
         {[
-          { name: 'AWS', src: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg' },
+          //{ name: 'AWS', src: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg' },
           { name: 'Azure', src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg' },
           { name: 'Docker', src: 'https://cdn.simpleicons.org/docker' },
-          { name: 'Kubernetes', src: 'https://cdn.simpleicons.org/kubernetes' },
+          //{ name: 'Kubernetes', src: 'https://cdn.simpleicons.org/kubernetes' },
           { name: 'Vercel', src: 'https://cdn.simpleicons.org/vercel' },
           { name: 'Netlify', src: 'https://cdn.simpleicons.org/netlify' },
           { name: 'Render', src: 'https://cdn.simpleicons.org/render' },

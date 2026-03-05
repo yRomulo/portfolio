@@ -50,7 +50,7 @@ const CardContainer = styled.div`
   }
 `;
 
-const CarouselContainer = styled.div`
+/* const CarouselContainer = styled.div`
   position: relative;
   width: 500px;
   height: 400px;
@@ -107,9 +107,9 @@ const CarouselButton = styled.button`
   &:active {
     transform: translateY(-50%) scale(0.95);
   }
-`;
+`; */
 
-const CarouselIndicators = styled.div`
+/* const CarouselIndicators = styled.div`
   position: absolute;
   bottom: 0.4rem;
   left: 50%;
@@ -135,6 +135,118 @@ const Indicator = styled.button`
     background: #4f46e5;
     outline: 2px solid #667eea;
     transform: scale(1.15);
+    }
+    `; */
+    
+ const CarouselContainer = styled.div`
+  position: relative;
+  width: 500px;
+  height: 320px;
+  flex-shrink: 0;
+  background: #f8f9fa;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  @media(max-width: 768px) {
+    width: 100%;
+    height: 220px;
+    border-radius: 1rem 1rem 0 0;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 100%;        /* ← esse era o problema, estava sem altura */
+  position: relative;
+`;
+
+const CarouselImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  position: absolute;
+  inset: 0;
+  animation: carouselFadeIn 0.45s cubic-bezier(0.4, 0, 0.2, 1) both;
+
+  @keyframes carouselFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+`;
+
+
+// NOVO: botões mais elegantes com backdrop-blur
+const CarouselButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);  /* ← borda sutil ajuda em fundos claros */
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.3));  /* ← sombra sutil que separa do fundo */
+
+  ${props => props.left ? 'left: 0.6rem;' : 'right: 0.6rem;'}
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.65);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+`;
+
+// NOVO: barra de progresso no lugar dos pontinhos
+const ProgressBarContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 3px;
+  padding: 0 0.5rem 0.5rem;
+  z-index: 10;
+  background: linear-gradient(to top, rgba(0,0,0,0.28) 0%, transparent 100%);
+  padding-top: 1.5rem;
+`;
+
+const ProgressSegment = styled.button`
+  flex: 1;
+  height: 3px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.35);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: scaleY(1.6);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #ffffff;
+    border-radius: 2px;
+    transform: scaleX(${props => props.active ? 1 : 0});
+    transform-origin: left;
+    transition: transform ${props => props.active ? '0.35s ease' : '0s'};
   }
 `;
 
@@ -192,28 +304,32 @@ const ProjectCard = ({ title, description, images, codeLink, liveLink }) => {
   return (
     <CardContainer>
       <CarouselContainer>
-        <CarouselImage
-          key={currentImageIndex}
-          src={images[currentImageIndex]}
-          alt={title}
-        />
+        <ImageWrapper>
+          <CarouselImage
+            key={currentImageIndex}
+            src={images[currentImageIndex]}
+            alt={`${title} - imagem ${currentImageIndex + 1}`}
+          />
+        </ImageWrapper>
+
         {images.length > 1 && (
           <>
-            <CarouselButton left onClick={handlePrevImage}>
-              <ChevronLeft size={20} />
+            <CarouselButton left onClick={handlePrevImage} aria-label="Imagem anterior">
+              <ChevronLeft size={18} />
             </CarouselButton>
-            <CarouselButton onClick={handleNextImage}>
-              <ChevronRight size={20} />
+            <CarouselButton onClick={handleNextImage} aria-label="Próxima imagem">
+              <ChevronRight size={18} />
             </CarouselButton>
-            <CarouselIndicators>
+            <ProgressBarContainer>
               {images.map((_, index) => (
-                <Indicator
+                <ProgressSegment
                   key={index}
                   active={index === currentImageIndex}
                   onClick={() => setCurrentImageIndex(index)}
+                  aria-label={`Ir para imagem ${index + 1}`}
                 />
               ))}
-            </CarouselIndicators>
+            </ProgressBarContainer>
           </>
         )}
       </CarouselContainer>
@@ -247,7 +363,7 @@ const Projects = () => {
   const projects = [
     {
       title: 'Click Financas',
-      description: 'O Click Finança é uma aplicação web full stack para controle financeiro pessoal, desenvolvida com React no frontend, utilizando Zustand, React Router, Axios e Recharts para gerenciamento de estado, navegação, consumo de API e visualização de dados. O backend foi construído com Node.js e Express, com autenticação via JWT, criptografia de senhas com bcryptjs e persistência de dados em PostgreSQL. O projeto utiliza Docker e Docker Compose para padronização do ambiente e disponibiliza uma API REST para gerenciamento de transações, categorias e relatórios financeiros.',
+      description: 'Aplicação full stack de controle financeiro pessoal. Frontend em React com Zustand, Recharts e Axios; backend em Node.js/Express com JWT, bcryptjs e PostgreSQL. Containerizado com Docker e com API REST para transações, categorias e relatórios.',
       images: [
         '/portfolio/click_financa/click_financa_dash.png',
         '/portfolio/click_financa/click_financa_categ.png',
@@ -258,23 +374,36 @@ const Projects = () => {
       liveLink: null
     },
     {
-      title: 'API projects',
-      description: 'API RESTful desenvolvida com Node.js, Express e TypeScript, estruturada em arquitetura em camadas (Controller → Service → DTO → Prisma). Implementa autenticação baseada em JWT, documentação OpenAPI via Swagger, persistência com Prisma ORM e PostgreSQL, além de containerização com Docker e Docker Compose para padronização de ambiente e deploy facilitado.',
+      title: 'Astro Call',
+      description: 'Aplicação full stack para gerenciamento de chamadas. Frontend em Next.js/React/TypeScript, backend em Node.js/Express com JWT, bcrypt e SQLite. Deploy na Vercel (frontend) e Render (backend).',
       images: [
-        '/portfolio/api_projects/swagger_dashboard.png',
-        '/portfolio/api_projects/swagger_schemas.png',
+        '/portfolio/astro_call/home.png',
+        '/portfolio/astro_call/dashboard.png',
+        '/portfolio/astro_call/adminPage.png',
+        '/portfolio/astro_call/editProfile.png',
+        '/portfolio/astro_call/call.png',
+        '/portfolio/astro_call/submit.png',
       ],
-      codeLink: 'https://github.com/yRomulo/APIprojects'
+      codeLink: 'https://github.com/yRomulo/AstroCall'
     },
     {
       title: 'Click Agenda',
-      description: 'O ClickAgenda é uma aplicação web full stack para gerenciamento de agendamentos, desenvolvida com Next.js, React e TypeScript no frontend e Node.js com Express no backend. A solução implementa autenticação via JWT, criptografia de senhas com bcrypt, validação com express-validator e persistência de dados em SQLite com migrações automatizadas. O deploy foi realizado utilizando Vercel (frontend) e Render (backend)',
+      description: 'Aplicação full stack de gerenciamento de agendamentos. Frontend em Next.js/React/TypeScript, backend em Node.js/Express com JWT, bcrypt e SQLite. Deploy na Vercel (frontend) e Render (backend).',
       images: [
         '/portfolio/click_agenda/click_agenda_dash.png',
         '/portfolio/click_agenda/click_agenda_login.png'
       ],
       codeLink: 'https://github.com/yRomulo/click_agenda',
       liveLink: 'https://clickagenda.vercel.app/login'
+    },
+    {
+      title: 'API projects',
+      description: 'API RESTful em Node.js, Express e TypeScript com arquitetura em camadas (Controller → Service → DTO → Prisma). Autenticação JWT, documentação via Swagger, persistência com Prisma ORM + PostgreSQL e containerização com Docker.',
+      images: [
+        '/portfolio/api_projects/swagger_dashboard.png',
+        '/portfolio/api_projects/swagger_schemas.png',
+      ],
+      codeLink: 'https://github.com/yRomulo/APIprojects'
     },
   ];
 
